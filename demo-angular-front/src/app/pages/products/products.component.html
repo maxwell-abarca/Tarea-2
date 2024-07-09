@@ -4,7 +4,7 @@
   </div>
   <div>
     @defer {
-      <div class="d-flex justify-content-end pb-2">
+      <div *ngIf="areActionsAvailable" class="d-flex justify-content-end pb-2">
         <button
           (click)="addModal.show()" 
           type="button" 

@@ -20,7 +20,7 @@ import { CategoryService } from '../../../services/category.service';
 })
 export class CategoryListComponent implements OnChanges {
   @Input() itemList: ICategory[] = [];
-  @Input() areActionsAvailable: boolean = true;
+  @Input() areActionsAvailable: boolean = false;
   public selectedItem: ICategory = {};
   public categoryService: CategoryService = inject(CategoryService);
   constructor(private datePipe: DatePipe) { }
