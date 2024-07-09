@@ -33,7 +33,6 @@ public class AuthRestController {
     private RoleRepository roleRepository;
 
 
-
     private final AuthenticationService authenticationService;
     private final JwtService jwtService;
 
@@ -58,4 +57,18 @@ public class AuthRestController {
 
         return ResponseEntity.ok(loginResponse);
     }
+
+    @PostMapping("/signup")
+    public ResponseEntity<?> registerUser(@RequestBody User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        Optional<Role> optionalRole = roleRepository.findByName(RoleEnum.USER);
+
+        if (optionalRole.isEmpty()) {
+            return null;
+        }
+        user.setRole(optionalRole.get());
+        User savedUser = userRepository.save(user);
+        return ResponseEntity.ok(savedUser);
+    }
+
 }
